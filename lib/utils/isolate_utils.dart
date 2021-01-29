@@ -11,14 +11,14 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 class IsolateUtils {
   static const String DEBUG_NAME = "InferenceIsolate";
 
-  Isolate _isolate;
+  Isolate isolate;
   ReceivePort _receivePort = ReceivePort();
   SendPort _sendPort;
 
   SendPort get sendPort => _sendPort;
 
   void start() async {
-    _isolate = await Isolate.spawn<SendPort>(
+    isolate = await Isolate.spawn<SendPort>(
       entryPoint,
       _receivePort.sendPort,
       debugName: DEBUG_NAME,
